@@ -1,4 +1,7 @@
 #include <Servo.h>
+#include <SoftwareSerial.h>
+
+// SoftwareSerial BT(0,1);
 
 // Defining our servo motor elements
 Servo servo_1;
@@ -27,6 +30,9 @@ void setup(){
 
   // starting our input and output
   Serial.begin(9600);
+
+  // starting our bluetooth module
+  // BT.begin(9600);
   // pinMode(relayPin, OUTPUT);
   // digitalWrite(relayPin, HIGH);
 }
@@ -37,6 +43,7 @@ void loop(){
     // input of the character
     char input = Serial.read();
 
+    // motor 1
     if(input == 'a'){
       servo_1.attach(servo1Pin);
       hasRun = true;
@@ -53,12 +60,14 @@ void loop(){
         hasRun = false;
       }
     }
+
+    // motor 2
     else if(input == 'b'){
       servo_2.attach(servo2Pin);
       hasRun = true;
       if(hasRun){
         for(int deg = 0; deg <= 90; deg++){
-          servo_2.writfe(deg);
+          servo_2.write(deg);
           delay(15);
         }
 
@@ -69,6 +78,8 @@ void loop(){
         hasRun = false;
       }
     }
+
+    // motor 3
     else if(input == 'c'){
       servo_3.attach(servo3Pin);
       hasRun = true;
@@ -85,7 +96,9 @@ void loop(){
         hasRun = false;
       }
     }
-    else if(input =='d'){
+
+    // temperature sensor
+    else if(input =='t'){
         hasRun = true;
         int sensorValue = analogRead(sensorPin);  
         float voltage = sensorValue * (5.0 / 1024.0);
@@ -96,6 +109,17 @@ void loop(){
         hasRun = false;
       }
 
+    // bluetooth
+    // else if(input == 'z'){
+    //   hasRun = true;
+    //   if(BT.available()){
+    //     char data = BT.read();
+    //     Serial.println(data);
+    //   }
+    //   hasRun = false;
+    // }
+
+    // exit 
     else if(input == 'e'){
       hasRun = false;
       return;
