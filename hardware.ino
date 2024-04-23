@@ -19,10 +19,10 @@ Servo servo_3;
 // servo motors
 const int servo1Pin = 8;
 const int servo2Pin = 9;
-const int servo3Pin = 12;
+const int servo3Pin = 13;
 // bluetooth modules
-const int bluetoothTX = 10;
-const int bluetoothRX = 11;
+const int bluetoothTX = 11;
+const int bluetoothRX = 12;
 // temperature sensor
 const int sensorPin = A0;
 
@@ -46,12 +46,12 @@ void setup() {
 
 void loop() {
   // if serial connection is established this loop runs
-  if (Serial.available() && bluetoothModule.available() > 0) {
+  if (Serial.available() && bluetoothModule.read() > 0) {
     // input of the character
     int input = bluetoothModule.read();
 
     // motor 1
-    if (input == 1) {
+    if ((int)input == 1) {
       servo_1.attach(servo1Pin);
       hasRun = true;
       if (hasRun) {
@@ -69,7 +69,7 @@ void loop() {
     }
 
     // motor 2
-    else if (input == 2) {
+    else if ((int)input == 2) {
       servo_2.attach(servo2Pin);
       hasRun = true;
       if (hasRun) {
@@ -87,7 +87,7 @@ void loop() {
     }
 
     // motor 3
-    else if (input == 3) {
+    else if ((int)input == 3) {
       servo_3.attach(servo3Pin);
       hasRun = true;
       if (hasRun) {
@@ -105,19 +105,21 @@ void loop() {
     }
 
     // temperature sensor
-    else if (input == 4) {
+    else if ((int)input == 4) {
       hasRun = true;
       int sensorValue = analogRead(sensorPin);
       float voltage = sensorValue * (5.0 / 1024.0);
       float temperature = voltage * 10.0;
-      Serial.print("Temperature: ");
-      Serial.print(temperature);
-      Serial.println(" degree Celsius");
+      // 9/5*C + 32
+      int fahrenheit = temperature * 1.8;
+      fahrenheit += 32;
+      bluetoothModule.print(fahrenheit);
       hasRun = false;
     }
 
     // exit
-    else if (input == 5) {
+    else if ((int)input == 5) {
+      Serial.println("<exit>");
       hasRun = false;
       return;
     }
