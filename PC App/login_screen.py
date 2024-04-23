@@ -1,17 +1,17 @@
 import tkinter as tk
 from PIL import Image, ImageTk
 
+# __configure__ font
 FONT = ('Menlo', 14, 'bold')
 
+# __init__ usernames and password
 usernames = ['prashant', 'sahil', 'ishan', 'sunny', 'priyanshu','doctor', 'patient']
 passwords = ['prashant123', 'sahil123', 'ishan123', 'sunny123', 'priyanshu123','password', 'patientpass']
-def login_fun(user, passwd):
+def login_fun(user, passwd, window):
     for i in range(int(len(usernames))):
         if user == usernames[i] and passwd == passwords[i]:
-            print("hehe boi")
-            return True
-    print("Invalid")
-    return False 
+            window.destroy()
+            open("vend-aid.py")
     
 
 window = tk.Tk()
@@ -38,7 +38,7 @@ password_label.grid(row=2, column=0)
 password_entry = tk.Entry(textvariable=password, show="*", font=FONT)
 password_entry.grid(row=2, column=1)
 
-login = tk.Button(window, text="Login", anchor='center', font=FONT, command=lambda:login_fun(username.get(), password.get()))
+login = tk.Button(window, text="Login", anchor='center', font=FONT, command=lambda:login_fun(username.get(), password.get(), window))
 login.grid(row=3, column=0, columnspan=2, sticky='we')
 
 signup = tk.Button(window, text="Signup", anchor='center', font=FONT)
