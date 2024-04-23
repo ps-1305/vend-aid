@@ -9,7 +9,7 @@
 - No waiting in queues
 - No confusing yourself in long names: "Do you have <i>Ofloxacin and Ornidazole combinations?</i>"
 <p align = "center">
-  <b></b>Vend Aid - a one stop solution to all your medical needs!</b>
+  <b>Vend Aid - a one stop solution to all your medical needs!</b>
 </p>
 
 # Installation
