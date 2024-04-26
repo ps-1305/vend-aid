@@ -7,7 +7,7 @@
 - Temperature check : the vending machine checks your temperature accurately!
 - Easy to use : just click a button and you have your medicines
 - No waiting in queues
-- No confusing yourself in long names: "Do you have <i>Ofloxacin and Ornidazole combinations?</i>"
+- No confusing yourself in long names: "Do you have <i>Ofloxacin</i> and <i>Ornidazole</i> combinations?"
 <p align = "center">
   <b>Vend Aid - a one stop solution to all your medical needs!</b>
 </p>
@@ -22,4 +22,6 @@
 % pip install pyserial && pip install serial
 ```
 
-## Android/iOS
+## Android
+- Download the APK
+- Happy vending!
